@@ -13,6 +13,10 @@ module Srgs
     end
   end
 
+  def example(example, xml)
+    xml.example example.text
+  end
+
   def item(item, xml)
     att = {}
     set(:repeat, att, item.repeat)
@@ -24,18 +28,23 @@ module Srgs
         token(item.element, xml)
       end
     else
-      xml.item(att) item.element do
+      xml.item(item.element, att) do
         tag(item.tag, xml) unless item.tag.nil?
       end
     end
   end
 
   def lexicon(lexicon, xml)
-
+    att = {uri: lexicon.uri }
+    set(:type, att, lexicon.type)
+    xml.lexicon(att)
   end
 
   def meta(meta, xml)
-
+    att = { content: meta.content }
+    set(:'http-equiv', att, meta.http_equiv)
+    set(:name, att, meta.name)
+    xml.meta(att)
   end
 
   def metadata(metadata, xml)
