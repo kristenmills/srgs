@@ -1,14 +1,14 @@
 module Srgs
   class Item
 
-    attr_accessor :text, :repeat, :repeat_prob, :weight, :xml_tag
+    attr_accessor :element, :repeat, :repeat_prob, :weight
 
-    def initialize(text, repeat=nil, repeat_prob = nil, weight = nil)
-      @text = text
+    def initialize(element, tag=nil, repeat=nil, repeat_prob = nil, weight = nil)
+      @element = element
+      @tag = tag
       @repeat = repeat
       @repeat_prob = repeat_prob
       @weight = weight
-      @xml_tag = 'item'
     end
 
   end

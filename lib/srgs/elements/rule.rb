@@ -1,12 +1,13 @@
 module Srgs
   class Rule
 
-    attr_accessor :id, :scope, :dynamic, :elements, :xml_tag
+    attr_accessor :id, :scope, :dynamic, :elements
 
-    def initialize(id, scope = 'private', dynamic = false)
+    def initialize(id, scope = 'private', dynamic = nil)
       @id = id
       @elements = Array.new
-      @xml_tag = 'rule'
+      @scope = scope
+      @dynamic = dynamic
     end
 
     def <<(rule)

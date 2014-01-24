@@ -1,13 +1,12 @@
 module Srgs
-  class Grammar
+  class Token
 
-    attr_accessor :text, :display, :pron, :xml_tag
+    attr_accessor :text, :display, :pron
 
     def initialize(text, display = nil, pron = nil)
-      @root = text
+      @text = text
       @display = display
       @pron = pron
-      @xml_tag = 'token'
     end
 
   end

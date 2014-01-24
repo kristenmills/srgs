@@ -1,12 +1,12 @@
 module Srgs
   class Grammar
 
-    attr_accessor :root, :rules, :xml_tag
+    attr_accessor :root, :lexicon, :rules
 
     def initialize(root = '')
       @root = root
+      @lexicons = Array.new
       @rules = Array.new
-      @xml_tag = 'grammar'
     end
 
     def <<(rule)

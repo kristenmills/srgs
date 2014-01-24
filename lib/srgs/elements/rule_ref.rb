@@ -1,11 +1,10 @@
 module Srgs
   class RuleRef
 
-    attr_accessor :uri, :xml_tag
+    attr_accessor :uri
 
     def initialize(rule)
       @uri = "##{rule.id}"
-      @xml_tag = 'ruleref'
     end
 
   end

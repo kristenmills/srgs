@@ -1,11 +1,10 @@
 module Srgs
   class Metadata
 
-    attr_accessor :text, :xml_tag
+    attr_accessor :text
 
     def initialize(text)
       @text = text
-      @xml_tag = 'metadata'
     end
 
   end
