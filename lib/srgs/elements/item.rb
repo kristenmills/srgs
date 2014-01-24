@@ -11,5 +11,11 @@ module Srgs
       @weight = weight
     end
 
+    def <<(element)
+      @tag = element if element.is_a? Tag
+      @element = element if(element.is_a? Token or element.is_a? String)
+      self
+    end
+
   end
 end

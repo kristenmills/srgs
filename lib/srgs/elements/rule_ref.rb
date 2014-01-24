@@ -4,7 +4,7 @@ module Srgs
     attr_accessor :uri, :special
 
     def initialize(rule, special=nil)
-      @uri = "##{rule.id}"
+      @uri = "##{rule}"
       @special =special
     end
 
