@@ -1,8 +1,8 @@
 require 'srgs/version'
-require 'srgs/grammar'
-require 'srgs/item'
-require 'srgs/example'
-require 'srgs/lexicon'
+require 'srgs/elements/grammar'
+require 'srgs/elements/item'
+require 'srgs/elements/example'
+require 'srgs/elements/lexicon'
 
 module Srgs
   # Your code goes here...

@@ -3,7 +3,7 @@ module Srgs
 
     attr_accessor :uri, :type, :xml_tag
 
-    def initialize(uri, type)
+    def initialize(uri, type=nil)
       @uri = uri
       @type = type
       @xml_tag = 'lexicon'
