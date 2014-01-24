@@ -6,6 +6,10 @@ module Srgs
   def build(grammar)
     builder = Nokogiri::XML::Builder.new do |xml|
       xml.grammar do
+        lexicon(grammar.lexicon, xml) unless grammar.lexicon.nil?
+        grammar.metas.each do |meta|
+          meta(meta, xml)
+        end
         grammar.rules.each do |rule|
           rule(xml, rule)
         end
@@ -66,6 +70,15 @@ module Srgs
       @rule.elements.each do |element|
         if element.is_a Item
           item(element, xml)
+        elsif element.is_a RuleRef
+          rule_ref(element, xml)
+        elsif element.is_a OneOf
+          one_of(element, xml)
+        elsif element.is_a Token
+          token(element, xml)
+        elsif element.is_a Tag
+          tag(element, xml)
+        end
         end
       end
     end

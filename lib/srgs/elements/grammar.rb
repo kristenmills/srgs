@@ -5,14 +5,14 @@ module Srgs
 
     def initialize(root = '')
       @root = root
-      @lexicons = Array.new
+      @lexicon = nil
       @metas = Array.new
       @rules = Array.new
     end
 
     def <<(element)
       @rules << element if element.is_a Rule
-      @lexicons << element if element is_a Lexicon
+      @lexicon = element if element is_a Lexicon
       @metas << element if element is_a Meta
     end
 
