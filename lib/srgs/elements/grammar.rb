@@ -9,5 +9,9 @@
         @xml_tag = 'grammar'
       end
 
+      def <<(rule)
+        @rules << rule
+      end
+
     end
   end
