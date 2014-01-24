@@ -1,7 +1,7 @@
 module Srgs
   class Grammar
 
-    attr_accessor :root, :lexicon, :rules
+    attr_accessor :root, :lexicon, :rules, :metas
 
     def initialize(root = '')
       @root = root
@@ -11,9 +11,10 @@ module Srgs
     end
 
     def <<(element)
-      @rules << element if element.is_a Rule
-      @lexicon = element if element is_a Lexicon
-      @metas << element if element is_a Meta
+      @rules << element if element.is_a? Rule
+      @lexicon = element if element.is_a? Lexicon
+      @metas << element if element.is_a? Meta
+      self
     end
 
   end

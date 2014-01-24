@@ -10,8 +10,9 @@ module Srgs
       @dynamic = dynamic
     end
 
-    def <<(rule)
+    def <<(element)
       @elements << element
+      self
     end
 
   end

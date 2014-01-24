@@ -1,7 +1,7 @@
 module Srgs
   class Item
 
-    attr_accessor :element, :repeat, :repeat_prob, :weight
+    attr_accessor :element, :repeat, :repeat_prob, :weight, :tag
 
     def initialize(element, tag=nil, repeat=nil, repeat_prob = nil, weight = nil)
       @element = element

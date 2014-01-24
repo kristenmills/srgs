@@ -7,8 +7,9 @@ module Srgs
       @items = Array.new
     end
 
-    def <<(rule)
-      @items << items
+    def <<(item)
+      @items << item
+      self
     end
 
   end
