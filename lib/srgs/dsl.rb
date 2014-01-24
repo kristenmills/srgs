@@ -12,8 +12,8 @@ module Srgs
       puts Srgs.build(@grammar)
     end
 
-    def item(element = '', &block)
-      item = Item.new(element)
+    def item(element = '', tag=nil, repeat=nil, repeat_prob = nil, weight = nil, &block)
+      item = Item.new(element, tag, repeat, repeat_prob, weight)
       @grammar.current_level << item
       old_current = @grammar.current_level
       @grammar.current_level = item
