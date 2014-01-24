@@ -9,7 +9,7 @@
       end
 
       def <<(rule)
-        @items << rule
+        @items << items
       end
 
     end
