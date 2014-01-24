@@ -6,7 +6,7 @@ module Srgs
     end
 
     def grammar(root, &block)
-      @grammar = Grammar.new 'root'
+      @grammar = Grammar.new root
       instance_eval &block
       @grammar.current_level = nil
       puts Srgs.build(@grammar)

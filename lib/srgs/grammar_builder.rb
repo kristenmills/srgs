@@ -5,7 +5,11 @@ module Srgs
 
   def build(grammar)
     builder = Nokogiri::XML::Builder.new do |xml|
-      xml.grammar do
+      xml.grammar(:'xml:lang' => "en-US",
+                  root: grammar.root,
+                  xmlns:"http://www.w3.org/2001/06/grammar",
+                  version: "1.0",
+                  :'tag-format' => "semantics/1.0") do
         lexicon(grammar.lexicon, xml) unless grammar.lexicon.nil?
         grammar.metas.each do |meta|
           meta(meta, xml)
