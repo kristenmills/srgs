@@ -5,7 +5,7 @@ module Srgs
 
     def initialize(text)
       @text = text
-      @xml_tag = "example"
+      @xml_tag = 'example'
     end
 
   end

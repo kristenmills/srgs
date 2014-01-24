@@ -3,10 +3,10 @@
 
       attr_accessor :root, :rules, :xml_tag
 
-      def initialize
-        @root = ""
+      def initialize(root = '')
+        @root = root
         @rules = Array.new
-        @xml_tag = "grammar"
+        @xml_tag = 'grammar'
       end
 
     end
