@@ -1,4 +1,4 @@
-# SrgsBuilder
+# SRGS
 
 TODO: Write a gem description
 

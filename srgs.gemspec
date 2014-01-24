@@ -1,16 +1,16 @@
 # coding: utf-8
 lib = File.expand_path('../lib', __FILE__)
 $LOAD_PATH.unshift(lib) unless $LOAD_PATH.include?(lib)
-require 'srgs_builder/version'
+require 'srgs/version'
 
 Gem::Specification.new do |spec|
-  spec.name          = "srgs_builder"
-  spec.version       = SrgsBuilder::VERSION
+  spec.name          = "srgs"
+  spec.version       = Srgs::VERSION
   spec.authors       = ["kristenmills"]
   spec.email         = ["kristen@kristen-mills.com"]
   spec.description   = "A gem for building SRGS/grXML documents."
   spec.summary       = "A gem for building SRGS/grXML documents."
-  spec.homepage      = "https://github.com/kristenmills/srgs_builder"
+  spec.homepage      = "https://github.com/kristenmills/srgs"
   spec.license       = "MIT"
 
   spec.files         = `git ls-files`.split($/)
