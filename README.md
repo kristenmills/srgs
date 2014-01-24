@@ -20,7 +20,7 @@ Or install it yourself as:
 
 Here's an example file. It will be documented better later
 
-[This](http://msdn.microsoft.com/en-us/library/hh361653(v=office.14).aspx) is a good
+[This](http://msdn.microsoft.com/en-us/library/hh361653.aspx) is a good
 reference on how srgs grammars work.
 
 In the future, I plan to create a dsl for this but for now this is how it works.
