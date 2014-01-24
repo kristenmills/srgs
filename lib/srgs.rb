@@ -11,6 +11,7 @@ require 'srgs/elements/rule_ref'
 require 'srgs/elements/tag'
 require 'srgs/elements/token'
 require 'srgs/grammar_builder'
+require 'srgs/dsl'
 
 module Srgs
 end

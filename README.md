@@ -23,58 +23,55 @@ Here's an example file. It will be documented better later
 [This](http://msdn.microsoft.com/en-us/library/hh361653(v=office.14).aspx) is a good
 reference on how srgs grammars work.
 
-In the future, I plan to create a dsl for this but for now this is how it works.
 ```ruby
 require 'srgs'
 
-grammar = Srgs::Grammar.new
+module WeatherGrammar
+  include Srgs::DSL
 
-sunriseset = Srgs::Rule.new('riseset')
-sunriseset_choices = Srgs::OneOf.new << Srgs::Item.new('rise') << Srgs::Item.new('set')
-sunriseset << sunriseset_choices
-sunriseset.scope = 'private'
+  extend self
 
-sunriseset_ref = Srgs::RuleRef.new(sunriseset)
+  grammar 'topLevel' do
+    private_rule 'riseset' do
+      one_of do
+        item 'rise'
+        item 'set'
+      end
+    end
 
-days = Srgs::Rule.new('days')
-days_choices = Srgs::OneOf.new << Srgs::Item.new('today') << Srgs::Item.new('tomorrow') << Srgs::Item.new('currently')
-days << days_choices
-days.scope = 'private'
+    private_rule 'days' do
+      one_of do
+        item 'today'
+        item 'tomorrow'
+        item 'currently'
+      end
+    end
 
-days_ref = Srgs::RuleRef.new(days)
+    public_rule 'weather' do
+      item 'Mycroft what is the weather'
+      reference 'days'
+      tag 'out.day=rules.days;'
+    end
 
-weather = Srgs::Rule.new('weather')
-sun = Srgs::Rule.new('sun')
+    public_rule 'days' do
+      item 'Mycroft when is sun'
+      reference 'riseset'
+      tag 'out.rise_or_set=rules.riseset;'
+      reference 'days'
+      tag 'out.day=rules.days;'
+    end
 
-question1 = Srgs::Item.new("Mycroft what is the weather");
-question2 = Srgs::Item.new("Mycroft When is sun");
-
-weather << question1
-weather << days_ref
-weather << Srgs::Tag.new("out.day=rules.days;")
-weather.scope = 'public'
-
-sun << question2
-sun << sunriseset_ref
-sun << Srgs::Tag.new("out.rise_or_set=rules.riseset;")
-sun << days_ref
-sun << Srgs::Tag.new("out.day=rules.days;")
-sun.scope = 'public'
-
-top_level = Srgs::Rule.new("toplevel");
-top_level_choices = Srgs::OneOf.new
-item1 = Srgs::Item.new Srgs::RuleRef.new(weather)
-item2 = Srgs::Item.new Srgs::RuleRef.new(sun)
-top_level_choices << item1
-top_level_choices << item2
-top_level << top_level_choices
-
-grammar << top_level << weather << sun << days << sunriseset
-
-grammar.root = "toplevel"
-
-puts Srgs.build(grammar)
+    public_rule 'topLevel' do
+      one_of do
+        reference_item 'weather'
+        reference_item 'days'
+      end
+    end
+  end
+end
 ```
+
+Running that will print to console the corresponding xml.
 
 ## Contributing
 

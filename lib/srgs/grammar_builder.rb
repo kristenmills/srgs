@@ -102,8 +102,8 @@ module Srgs
 
   def token(token, xml)
     att = {}
-    att(:'sapi:display', att, token.display)
-    att(:'sapi:pron', att, token.pron)
+    set(:'sapi:display', att, token.display)
+    set(:'sapi:pron', att, token.pron)
     xml.token(token.text, att)
   end
 
