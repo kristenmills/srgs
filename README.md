@@ -53,7 +53,7 @@ module WeatherGrammar
       tag 'out.day=rules.days;'
     end
 
-    public_rule 'days' do
+    public_rule 'sun' do
       item 'Mycroft when is sun'
       reference 'riseset'
       tag 'out.rise_or_set=rules.riseset;'
@@ -64,7 +64,7 @@ module WeatherGrammar
     public_rule 'topLevel' do
       one_of do
         reference_item 'weather'
-        reference_item 'days'
+        reference_item 'sun'
       end
     end
   end
@@ -72,6 +72,46 @@ end
 ```
 
 Running that will print to console the corresponding xml.
+```xml
+<?xml version="1.0" encoding="UTF-8"?>
+<grammar xmlns="http://www.w3.org/2001/06/grammar" xml:lang="en-US" root="toplevel" tag-format="semantics/1.0" version="1.0">
+   <rule id="toplevel">
+      <one-of>
+         <item>
+            <ruleref uri="#weather" />
+         </item>
+         <item>
+            <ruleref uri="#sun" />
+         </item>
+      </one-of>
+   </rule>
+   <rule id="weather" scope="public">
+      <item>Mycroft what is the weather</item>
+      <ruleref uri="#days" />
+      <tag>out.day=rules.days;</tag>
+   </rule>
+   <rule id="sun" scope="public">
+      <item>Mycroft When is sun</item>
+      <ruleref uri="#riseset" />
+      <tag>out.rise_or_set=rules.riseset;</tag>
+      <ruleref uri="#days" />
+      <tag>out.day=rules.days;</tag>
+   </rule>
+   <rule id="days" scope="private">
+      <one-of>
+         <item>today</item>
+         <item>tomorrow</item>
+         <item>currently</item>
+      </one-of>
+   </rule>
+   <rule id="riseset" scope="private">
+      <one-of>
+         <item>rise</item>
+         <item>set</item>
+      </one-of>
+   </rule>
+</grammar>
+```
 
 ## Contributing
 
