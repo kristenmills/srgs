@@ -10,7 +10,7 @@ module Srgs
           rule(xml, rule)
         end
       end
-    end
+    end.to_xml
   end
 
   def example(example, xml)
@@ -48,10 +48,14 @@ module Srgs
   end
 
   def metadata(metadata, xml)
+    #TODO
+    raise "Not yet implemented"
   end
 
   def one_of(one_of, xml)
-
+    one_of.items.each do |item|
+      item(item, xml)
+    end
   end
 
   def rule(xml, rule)
@@ -68,7 +72,9 @@ module Srgs
   end
 
   def rule_ref(rule_ref, xml)
-
+    att = { uri: rule_ref.uri }
+    set(:special, att, rule.special)
+    xml.ruleref(att)
   end
 
   def tag(tag, xml)
