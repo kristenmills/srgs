@@ -12,8 +12,8 @@ module Srgs
       puts Srgs.build(@grammar)
     end
 
-    def item(element = '', tag=nil, repeat=nil, repeat_prob = nil, weight = nil, &block)
-      item = Item.new(element, tag, repeat, repeat_prob, weight)
+    def item(element = '', args = {}, &block)
+      item = Item.new(element, args[:repeat], args[:repeat_prob], args[:weight])
       @grammar.current_level << item
       old_current = @grammar.current_level
       @grammar.current_level = item
@@ -21,12 +21,12 @@ module Srgs
       @grammar.current_level = old_current
     end
 
-    def lexicon(uri, type=nil)
-      @grammar << Lexicon.new(uri, type)
+    def lexicon(uri, args = {})
+      @grammar << Lexicon.new(uri, args[:type])
     end
 
-    def meta(content, name = nil, http_equiv = nil)
-      @grammar << Meta.new(content, name, http_equiv)
+    def meta(content, args = {})
+      @grammar << Meta.new(content, args[:name], args[:http_equiv])
     end
 
     def one_of(&block)
@@ -37,34 +37,34 @@ module Srgs
       @grammar.current_level = old_current
     end
 
-    def public_rule(id, dynamic= nil,  &block)
-      @grammar.current_level = Rule.new(id, 'public', dynamic)
+    def public_rule(id, args = {}, &block)
+      @grammar.current_level = Rule.new(id, 'public', args[:dynamic])
       @grammar << @grammar.current_level
       instance_eval &block
       @grammar.current_level = nil
     end
 
-    def private_rule(id, dynamic= nil,  &block)
-      @grammar.current_level = Rule.new(id, 'private', dynamic)
+    def private_rule(id, args = {},  &block)
+      @grammar.current_level = Rule.new(id, 'private', args[:dynamic])
       @grammar << @grammar.current_level
       instance_eval &block
       @grammar.current_level = nil
     end
 
-    def reference(name, special=nil)
-      @grammar.current_level << RuleRef.new(name, special)
+    def reference(name, args = {})
+      @grammar.current_level << RuleRef.new(name, args[:special])
     end
 
-    def reference_item(name, special=nil)
-      @grammar.current_level << Item.new(RuleRef.new(name, special))
+    def reference_item(name, args = {})
+      @grammar.current_level << Item.new(RuleRef.new(name, args[:special]))
     end
 
     def tag(text)
       @grammar.current_level << Tag.new(text)
     end
 
-    def token(text, display=nil, pron = nil)
-      @grammar.current_level << Token.new(text, display, pron)
+    def token(text, args = {})
+      @grammar.current_level << Token.new(text, args[:display], args[:pron])
     end
   end
 end

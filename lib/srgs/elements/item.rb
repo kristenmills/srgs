@@ -3,7 +3,7 @@ module Srgs
 
     attr_accessor :element, :repeat, :repeat_prob, :weight, :tag
 
-    def initialize(element, tag=nil, repeat=nil, repeat_prob = nil, weight = nil)
+    def initialize(element, repeat=nil, repeat_prob = nil, weight = nil, tag = nil)
       @element = element
       @tag = tag
       @repeat = repeat
