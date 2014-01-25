@@ -20,9 +20,6 @@ Or install it yourself as:
 
 Here's an example file. It will be documented better later
 
-[This](http://msdn.microsoft.com/en-us/library/hh361653.aspx) is a good
-reference on how srgs grammars work.
-
 ```ruby
 require 'srgs'
 
@@ -112,6 +109,11 @@ Running that will print to console the corresponding xml.
    </rule>
 </grammar>
 ```
+
+## References
+
+* [Speech Recognition Grammar Specification Version 1.0](http://www.w3.org/TR/speech-grammar/#S4.13)
+* [SRGS Grammar XML Reference](http://msdn.microsoft.com/en-us/library/hh361653.aspx)
 
 ## Contributing
 
