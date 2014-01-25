@@ -91,6 +91,8 @@ module Srgs
           token(element, xml)
         when Tag
           tag(element, xml)
+        when Example
+          example(element, xml)
         else
           raise "Can't add #{element.class} to item"
         end
