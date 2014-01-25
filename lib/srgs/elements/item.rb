@@ -1,10 +1,10 @@
 module Srgs
   class Item
 
-    attr_accessor :element, :repeat, :repeat_prob, :weight, :tag
+    attr_accessor :elements, :repeat, :repeat_prob, :weight
 
-    def initialize(element, repeat=nil, repeat_prob = nil, weight = nil, tag = nil)
-      @element = element
+    def initialize(element = '', repeat=nil, repeat_prob = nil, weight = nil)
+      @elements = [element]
       @tag = tag
       @repeat = repeat
       @repeat_prob = repeat_prob
@@ -12,8 +12,7 @@ module Srgs
     end
 
     def <<(element)
-      @tag = element if element.is_a? Tag
-      @element = element if(element.is_a? Token or element.is_a? String)
+      @elements << element
       self
     end
 

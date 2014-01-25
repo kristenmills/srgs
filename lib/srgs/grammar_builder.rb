@@ -30,19 +30,20 @@ module Srgs
     set(:repeat, att, item.repeat)
     set(:'repeat-prob', att, item.repeat_prob)
     set(:weight, att, item.weight)
-    if item.element.is_a? Token
-      xml.item(att) do
-        tag(item.tag, xml) unless item.tag.nil?
-        token(item.element, xml)
-      end
-    elsif item.element.is_a? RuleRef
-      xml.item(att) do
-        tag(item.tag, xml) unless item.tag.nil?
-        rule_ref(item.element, xml)
-      end
-    else
-      xml.item(item.element, att) do
-        tag(item.tag, xml) unless item.tag.nil?
+    xml.item(att) do
+      item.elements.each do |element|
+        case element
+        when Token
+          token(element, xml)
+        when RuleRef
+          rule_ref(element, xml)
+        when Tag
+          tag(element, xml)
+        when String
+          text(element, xml)
+        else
+          raise "Can't add #{element.class} to item."
+        end
       end
     end
   end
@@ -79,15 +80,16 @@ module Srgs
     set(:'sapi:dynamic', att, rule.dynamic)
     xml.rule(att) do
       rule.elements.each do |element|
-        if element.is_a? Item
+        case element
+        when Item
           item(element, xml)
-        elsif element.is_a? RuleRef
+        when RuleRef
           rule_ref(element, xml)
-        elsif element.is_a? OneOf
+        when OneOf
           one_of(element, xml)
-        elsif element.is_a? Token
+        when Token
           token(element, xml)
-        elsif element.is_a? Tag
+        when Tag
           tag(element, xml)
         end
       end
@@ -104,6 +106,10 @@ module Srgs
     xml.tag tag.text
   end
 
+  def text(text, xml)
+    xml.text text
+  end
+
   def token(token, xml)
     att = {}
     set(:'sapi:display', att, token.display)
@@ -114,5 +120,4 @@ module Srgs
   def set(sym, att, value)
     att[sym] = value unless value.nil?
   end
-
 end

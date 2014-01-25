@@ -9,7 +9,9 @@ module Srgs
       @grammar = Grammar.new root
       instance_eval &block
       @grammar.current_level = nil
-      puts Srgs.build(@grammar)
+      grammar =  Srgs.build(@grammar)
+      puts grammar
+      grammar
     end
 
     def item(element = '', args = {}, &block)
@@ -61,6 +63,10 @@ module Srgs
 
     def tag(text)
       @grammar.current_level << Tag.new(text)
+    end
+
+    def text(text)
+      @grammar.current_level << text
     end
 
     def token(text, args = {})
