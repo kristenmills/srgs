@@ -5,7 +5,6 @@ module Srgs
 
     def initialize(element = '', repeat=nil, repeat_prob = nil, weight = nil)
       @elements = [element]
-      @tag = tag
       @repeat = repeat
       @repeat_prob = repeat_prob
       @weight = weight
