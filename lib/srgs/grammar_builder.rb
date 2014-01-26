@@ -101,7 +101,8 @@ module Srgs
   end
 
   def rule_ref(rule_ref, xml)
-    att = { uri: rule_ref.uri }
+    att = {}
+    set(:uri, att, rule_ref.uri)
     set(:special, att, rule_ref.special)
     xml.ruleref(att)
   end

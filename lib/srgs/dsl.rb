@@ -61,6 +61,10 @@ module Srgs
       @grammar.current_level << Item.new(RuleRef.new(name, args[:special]))
     end
 
+    def reference_wildcard
+      @grammar.current_level << RuleRef.new(nil, 'GARBAGE')
+    end
+
     def tag(text)
       @grammar.current_level << Tag.new(text)
     end
