@@ -41,6 +41,8 @@ module Srgs
           tag(element, xml)
         when String
           text(element, xml)
+        when OneOf
+          one_of(element, xml)
         else
           raise "Can't add #{element.class} to item."
         end
