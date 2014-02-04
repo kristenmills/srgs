@@ -43,6 +43,8 @@ module Srgs
           text(element, xml)
         when OneOf
           one_of(element, xml)
+        when Item
+          item(element, xml)
         else
           raise "Can't add #{element.class} to item."
         end
